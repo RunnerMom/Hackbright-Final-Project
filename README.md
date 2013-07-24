@@ -8,3 +8,6 @@ Repo for my Garmin-Runcoach Final project
 
 Task 1: Look up JSON parsers and study the data model of the rcoach API.
 Get sample data to display correctly in html/flask on local machine.
+
+http://www.json.org/
+
