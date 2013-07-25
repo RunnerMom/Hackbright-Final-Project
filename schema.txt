@@ -1,0 +1,34 @@
+===================
+Schema required for viewing daily assigned workout
+===================
+
+User:
+------
+id: integer, primary key
+name: string
+rcoach_email: string
+rcoach_password: string
+token:string
+request_id:string
+ath_profile_id: integer
+
+
+User_Day:
+---------
+id: integer, primary key
+date: datetime
+workout_id: integer, foreign key 
+total_miles_run: float  ?
+total_run_time:datetime ?
+
+Workout:
+----------
+id: integer, primary key
+type:
+pace: string   ?
+run_time: datetime  ?
+
+
+A user has one workout every day.
+Workout has 9 types:
+    Maintenance
