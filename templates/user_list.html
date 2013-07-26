@@ -1,0 +1,20 @@
+<!--
+{% extends 'base.html' %}
+
+{% block body %}
+-->
+
+<div class ="header">
+    <h2>Gowri's movie ratings app</h2>
+    <p>
+</div>
+
+<div class = "container">
+    {% for user in users %}
+       <h5> User  {{ user.user_id }}, age {{ user.age }} has {{ user.rating|length}} ratings</h5>
+    {% endfor %}
+
+</div>
+<!--
+{% endblock %}
+-->

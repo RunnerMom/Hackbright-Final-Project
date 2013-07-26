@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1 class="header">Gowri's Movie Ratings App</h1>
+        </div>
+        <div class="span3">
+            <h3><i img="icon-plus-sign.jpg"></i>Login</h3>
+            <form action="/login">
+                <input type="text" name="user_id" placeholder="User ID" />
+                <br />
+                <input type="text" name="password" placeholder="password" />
+                <br />
+                <input class="btn" type="submit" value="Log in" />
+            </form>
+        </div>
+
+        <div class="span4">
+            <h3><i img="icon-plus-sign.jpg"></i> Add User</h3>
+            <form action="/add_user">
+                <input type="text" name="age" placeholder="Age" />
+                <br />
+                <input type="text" name="gender" placeholder="Gender" />
+                <br />
+                <input type="text" name="occupation" placeholder="Occupation" />
+                <br />
+                <input type="text" name="zipcode" placeholder="Zipcode" />
+                <br />
+                <input class="btn" type="submit" value="Add User" />
+            </form>
+        </div>
+<div class = "container">
+    <a href="/users" class="url fn" itemprop="url">
+        <span>
+        SHOW FULL LIST OF USERS IN THE SYSTEM
+        </span>
+    </a>
+</div>
+<p>
+        <div class="span8">
+
+                <div class="movie">
+                    Movies Reviewed on this site:
+                   {% for movie in movies %}
+                        <h5>{{ movie.name }} 
+                        </h5>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
