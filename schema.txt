@@ -6,27 +6,41 @@ User:
 ------
 id: integer, primary key
 name: string
-email: string
-password: string
-token:string
-request_id:string
-ath_profile_id: integer
+rc_email: string
+rc_password: string
+rc_token:string
+rc_request_id:string
+rc_ath_profile_id: integer
 
 
 Assignment:
 ---------
 id: integer, primary key
-date: datetime
-workout_id: integer, foreign key 
-total_miles_assigned: float  ?
-total_time_assigned:datetime ?
+user_id: integer, foreign key
+log_date: datetime
+wo_type: integer, foreign key  #workout type
+
+#workout mileage
+    wo_lo_mileage: integer         -> # of seconds
+    wo_hi_mileage: integer          
+
+#workout time assigned
+    lotime: integer 
+    hitime: integer
+
+#completed workout fields (rc)
+    log_miles: float             ??they store as string??
+
+
+total_miles_assigned: float
+total_time_assigned: integer
 
 Workout:
 ----------
 id: integer, primary key
 type:
-pace: string   ?
-workout_time: datetime  ?
+pace: integer -> store as a number of seconds and display easier
+workout_time: integer -> store as a number of minutes
 
 
 A user has one assignment every day.
