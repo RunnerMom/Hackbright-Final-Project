@@ -6,3 +6,36 @@ Comment: Gowri's access to Rcoach
 Comment: Gowri's race data
 http://runcoach.com/get_race_results_json.php?p_fnf_token=26444eb8030137c06ddd67e10caef3f3546f6bdc&p_request_id=32148&p_ath_id=474
 
+ have setup a developer key for you so that you can use some of our APIs: 18a2e94f6b2e472e4e58ec9606fd66a7810a57fb
+
+Here is the documentation:
+  I have explained how the login and token system works mostly in technical terms. Please let me know if you have any questions or if you have difficulty understanding anything:
+
+1. Login using the following url with a developer key, runcoach Username and Password.
+
+http://runcoach.com/fnf_remote_connect.php?developer_key=<your_developer_key>&p_username=<your_runcoach_username>&p_password=<your_runcoach_password>
+
+Above URL will return an array similar to the one below:
+
+{"token":"5a156b51df5485f1044451e1102ae8074b5a45a0","request_id":31151,"athlete_profiles_id":"17","error":""}
+
+All subsequent calls should pass the token and request_id in the following way:
+
+2. To get the workout_types, you should use the following url format:
+
+http://runcoach.com/get_workout_types_json.php?p_fnf_token=5a156b51df5485f1044451e1102ae8074b5a45a0&p_request_id=31151
+
+3. To get the race_distances, you should use the following url format:
+
+http://runcoach.com/get_race_distances_json.php?p_fnf_token=5a156b51df5485f1044451e1102ae8074b5a45a0&p_request_id=31151
+
+4. To get the race_results , you should use the following url format:
+
+http://runcoach.com/get_race_results_json.php?p_fnf_token=5a156b51df5485f1044451e1102ae8074b5a45a0&p_request_id=31151&p_ath_id=17
+
+5. To get the workout schedule, you should use the following url format:
+
+http://runcoach.com/get_schedule_json.php?p_fnf_token=5a156b51df5485f1044451e1102ae8074b5a45a0&p_request_id=31151&p_ath_id=17&p_from_date=2013-06-01&p_to_date=2013-06-30
+
+Please see the attached spreadsheet of the data model (confidential) - Please do not share this.
+ If you want some of the users data to be exported into a sql file, I can do that as well. Let us discuss next week and iron out the details.
