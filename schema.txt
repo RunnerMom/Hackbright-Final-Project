@@ -6,29 +6,31 @@ User:
 ------
 id: integer, primary key
 name: string
-rcoach_email: string
-rcoach_password: string
+email: string
+password: string
 token:string
 request_id:string
 ath_profile_id: integer
 
 
-User_Day:
+Assignment:
 ---------
 id: integer, primary key
 date: datetime
 workout_id: integer, foreign key 
-total_miles_run: float  ?
-total_run_time:datetime ?
+total_miles_assigned: float  ?
+total_time_assigned:datetime ?
 
 Workout:
 ----------
 id: integer, primary key
 type:
 pace: string   ?
-run_time: datetime  ?
+workout_time: datetime  ?
 
 
-A user has one workout every day.
-Workout has 9 types:
-    Maintenance
+A user has one assignment every day.
+An assignment can be one of 9 workout types:
+    1. Maintenance
+An assigment has a pace and run_time that is specific to the user
+
