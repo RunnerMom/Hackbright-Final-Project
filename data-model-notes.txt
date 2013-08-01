@@ -37,5 +37,9 @@ http://runcoach.com/get_race_results_json.php?p_fnf_token=5a156b51df5485f1044451
 
 http://runcoach.com/get_schedule_json.php?p_fnf_token=5a156b51df5485f1044451e1102ae8074b5a45a0&p_request_id=31151&p_ath_id=17&p_from_date=2013-06-01&p_to_date=2013-06-30
 
+
+http://runcoach.com/get_schedule_json.php?p_fnf_token=26444eb8030137c06ddd67e10caef3f3546f6bdc&p_request_id=32148&p_ath_id=474&p_from_date=2013-07-01&p_to_date=2013-07-30
+
+
 Please see the attached spreadsheet of the data model (confidential) - Please do not share this.
  If you want some of the users data to be exported into a sql file, I can do that as well. Let us discuss next week and iron out the details.

@@ -1,11 +1,18 @@
 import model
-import csv
+import json
 import time
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Date
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Column, Integer, String, Date, DateTime, Float
+from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
+from sqlalchemy import ForeignKey
+
+engine = create_engine("sqlite:///runcoach.db", echo=True)
+session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
+
+Base = declarative_base()
+Base.query = session.query_property()
 """
 This program is built to load runcoach data into a runcoach.db sqlite3 database:
 load_users - > user data
@@ -24,6 +31,9 @@ def convert_date_string(date_string):
 #             user_record = model.User(user_id=row[0], age=row[1], gender=row[2] , occupation=row[3], zipcode=row[4])
 #             session.add(user_record)
 #         session.commit()
+
+def load_assignment(session):
+    
 
 # def load_movies(session):
 #     with open('seed_data/u.item') as csvfile:

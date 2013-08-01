@@ -44,7 +44,20 @@ workout_time: integer -> store as a number of minutes
 
 
 A user has one assignment every day.
-An assignment can be one of 9 workout types:
-    1. Maintenance
+An assignment can be one of 10 workout types:
+    ==== Ignore these types
+    1. (1) Day Off
+    2. (2) Cross Training
+    3. (3) Recovery
+    4. (11) Rest
+    ==== Phase 1 use these types
+    4. (4) Maintenance
+    5. (8) Long Run
+    ===== Phase 3 use these types (ignore in Phase 1)
+    6. (5) Track
+    7. (10) Threshold
+    8. (31) Tempo
+    9. (20) Race
+    
 An assigment has a pace and run_time that is specific to the user
 

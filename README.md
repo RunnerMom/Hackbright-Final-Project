@@ -19,14 +19,18 @@ GARMIN API http://developer.garmin.com/web-device/garmin-communicator-plugin/
 Flask tutorial http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
 
-==========
-Task 1: Look up JSON parsers and study the data model of the rcoach API.
-Get sample data to display correctly in html/flask on local machine.
-
-Task 2: Flask tutorial - esp Global variables portion
-
-Task 3: set up a sample database with Schema. Access using Flask/HTML.
-=============
+========== 8.1.13
+1. Data Model for Runcoach
+2. Populate assignment table with 'real' data
+3. Data Model for Garmin API
+========== 8.6.13
+4. Populate garmin table with 'real' data
+5. Get something to display properly in html/flask on local machine
+============= 8.9.13 ======= conference day
+============= 8.13.13 ========
+6. More UI development
+7. initial analysis of whether goal was met
+8. More advanced assignment types
 
 
 

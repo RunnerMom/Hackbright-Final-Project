@@ -1,6 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Date, DateTime
+from sqlalchemy import Column, Integer, String, Date, DateTime, Float
 from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
 from sqlalchemy import ForeignKey
 
@@ -30,11 +30,12 @@ class Assignment(Base):
 
     id = Column(Integer, primary_key = True)
     date= Column(Date, nullable = True)   # calendar date
-    workout_id = Column(Integer, ForeignKey('workouts.id'), nullable=True)
-    total_miles_assigned = Column(Float(1))
+#    workout_id = Column(Integer, ForeignKey('workouts.id'), nullable=True)
+    workout_type = Column(String(64), nullable = True)
+    total_miles_assigned = Column(Float)
     total_time_assigned = Column(DateTime)
     
-
+"""
 class Workout(Base):             #u.data = "rating" ??
     __tablename__ = "workouts"
 
@@ -42,9 +43,16 @@ class Workout(Base):             #u.data = "rating" ??
     workout_type = Column(Integer, nullable=True)
     pace = Column(String(16), nullable=True)
     workout_time = Column(Time, nullable=True)
+
+
+class Log(Base):
+    assigment_ID
+    MILES_COMPLETED
+    pace
+    workout_time
 ### End class declarations
 
-
+"""
 def main():
     """In case we need this for something"""
     pass
