@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, String, Date, DateTime, Float
 from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
 from sqlalchemy import ForeignKey
 
-engine = create_engine("sqlite:///runcoach.db", echo=True)
+engine = create_engine("sqlite:///runcoach.db", echo=False)
 session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
 
 Base = declarative_base()
@@ -29,11 +29,12 @@ class Assignment(Base):
     __tablename__= "assignments"     #when do we use u.item instead of "movie?"
 
     id = Column(Integer, primary_key = True)
-    date= Column(Date, nullable = True)   # calendar date
+    date= Column(String(64), nullable = True)   # calendar date
 #    workout_id = Column(Integer, ForeignKey('workouts.id'), nullable=True)
     workout_type = Column(String(64), nullable = True)
-    total_miles_assigned = Column(Float)
-    total_time_assigned = Column(DateTime)
+    miles = Column(Float)
+    low_time = Column(Integer)
+    high_time = Column(Integer)
     
 """
 class Workout(Base):             #u.data = "rating" ??

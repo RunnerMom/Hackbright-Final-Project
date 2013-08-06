@@ -1,4 +1,6 @@
 import model
+model.Base.metadata.create_all(model.engine)        #code review with db instructor 
+
 import json
 import time
 from datetime import datetime
@@ -8,7 +10,7 @@ from sqlalchemy import Column, Integer, String, Date, DateTime, Float
 from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
 from sqlalchemy import ForeignKey
 
-engine = create_engine("sqlite:///runcoach.db", echo=True)
+engine = create_engine("sqlite:///runcoach.db", echo=False)
 session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
 
 Base = declarative_base()
@@ -32,12 +34,29 @@ def convert_date_string(date_string):
 #             session.add(user_record)
 #         session.commit()
 
-def load_assignment(session):
-    with open('seed_data/u.item') as jsonfile:
-        assignment_data =  #read file, print to screen
-        # json parser takes string returns dict, print raw object you get back.
-        print ("Loading your assignment data into sqlite3...")
-        for #object in # json object:
+def load_assignment():
+    with open('seed_data/GGassign.json') as jsonfile:
+        assignment_data = json.load(jsonfile)
+        # print assignment_data 
+
+        #read file, print to screen - DONE :)
+        # json parser takes string returns dict, print raw object you get back. - DONE :)
+       # print ("Loading your assignment data into sqlite3...")
+        for key, value in assignment_data.items():
+            date = key
+            workout_type = value['WoTypeName']
+            if workout_type == 'Long Run' or workout_type == 'Maintenance':
+                miles = value['miles']
+                low_time_in_seconds = value['lotime']
+                high_time_in_seconds = value['hitime']
+                # print "date: " + date
+                # print "  workout type: " + workout_type
+                # print "  miles: " + miles
+                # print "  low time: " + low_time_in_seconds
+                # print "  high time: " + high_time_in_seconds
+                assignment_record = model.Assignment(date=date, workout_type=workout_type, miles=miles, low_time=low_time_in_seconds, high_time=high_time_in_seconds)
+                session.add(assignment_record)
+        session.commit()
 
 
 # def load_movies(session):
@@ -78,10 +97,10 @@ def load_assignment(session):
 #             session.add(ratings_record)
 #         session.commit()
          
-def main(session):
+def main():
     # You'll call each of the load_* functions with the session as an argument
-    load_assignment(session)
+    load_assignment()
 
 if __name__ == "__main__":
-    s= model.connect()
-    main(s)
+#     s=model.connect()
+    main()

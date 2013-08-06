@@ -19,21 +19,34 @@ GARMIN API http://developer.garmin.com/web-device/garmin-communicator-plugin/
 Flask tutorial http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
 
+Python/JSON: http://docs.python.org/2/library/json.html
+http://effbot.org/zone/python-with-statement.htm
+
 ========== 8.1.13
 1. Data Model for Runcoach
- - finish seed.py
- - check db with model -i mode sqlalchemy
-2. Populate assignment table with 'real' data
-3. Data Model for Garmin API
+ - finish seed.py - done for Long Runs and Maintenance
+ - check db with model -i mode sqlalchemy - done
+
+>>> assignment = session.query(Assignment).filter_by(workout_type="Long Run")
+>>> assignment[0].date
+>>> session.query(Assignment).count()
+
+2. Populate assignment table with 'real' data - done. ~9 assignments 
+>>> done
+
+3. Get something to display properly in html/flask on local machine
+
+
+4. Data Model for Garmin API
 ========== 8.6.13
-4. Populate garmin table with 'real' data
-5. Get something to display properly in html/flask on local machine
+5. Populate garmin table with 'real' data
+6. Get something to display properly in html/flask on local machine
 ============= 8.8.13 ======= half day
 ============= 8.9.13 ======= conference day
 ============= 8.13.13 ========
-6. More UI development
-7. initial analysis of whether goal was met
-8. More advanced assignment types
+7. More UI development
+8. initial analysis of whether goal was met
+9. More advanced assignment types
 
 
 
