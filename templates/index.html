@@ -18,11 +18,12 @@
                         <ul>
                             <li>{{ assignment.workout_type}}</li>
                             <li>Miles: {{ assignment.miles}}</li>
-                            <li>Assigned Seconds: 
-                                {{ assignment.low_time }} 
-                                {{ assignment.seconds_to_minutes(assignment.low_time) }} 
+                            <li>Assigned Run Time: 
+
+                                {{ assignment.convert_time(assignment.low_time) }} 
                                 - 
-                                {{ assignment.seconds_to_minutes(assignment.high_time) }}
+                                {{ assignment.convert_time(assignment.high_time) }}
+                                
                             </li>
                         </ul>
                     {% endfor %}

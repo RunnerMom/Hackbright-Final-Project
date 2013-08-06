@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, Date, DateTime, Float
 from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
 from sqlalchemy import ForeignKey
+from math import floor
 
 engine = create_engine("sqlite:///runcoach.db", echo=False)
 session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
@@ -35,11 +36,14 @@ class Assignment(Base):
     miles = Column(Float)
     low_time = Column(Integer)
     high_time = Column(Integer)
-    def seconds_to_minutes(self, seconds):
-        hours = seconds/3600
-        minutes = seconds/60
-        timestring = "%h : %m" % hours, minutes
-        return timestring
+    def convert_time(self, seconds):
+        hours = floor(seconds/3600)
+        minutes = (seconds/60)-hours*60
+        return "%d:%02d" % (hours, minutes)
+
+        
+        
+
     
 """
 class Workout(Base):             #u.data = "rating" ??
