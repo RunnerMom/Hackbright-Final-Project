@@ -33,7 +33,12 @@ def convert_date_string(date_string):
 #         session.commit()
 
 def load_assignment(session):
-    
+    with open('seed_data/u.item') as jsonfile:
+        assignment_data =  #read file, print to screen
+        # json parser takes string returns dict, print raw object you get back.
+        print ("Loading your assignment data into sqlite3...")
+        for #object in # json object:
+
 
 # def load_movies(session):
 #     with open('seed_data/u.item') as csvfile:
@@ -73,12 +78,10 @@ def load_assignment(session):
 #             session.add(ratings_record)
 #         session.commit()
          
-# def main(session):
-#     # You'll call each of the load_* functions with the session as an argument
-#     load_users(session)
-#     load_movies(session)
-#     load_ratings(session)
+def main(session):
+    # You'll call each of the load_* functions with the session as an argument
+    load_assignment(session)
 
-# if __name__ == "__main__":
-#     s= model.connect()
-#     main(s)
+if __name__ == "__main__":
+    s= model.connect()
+    main(s)

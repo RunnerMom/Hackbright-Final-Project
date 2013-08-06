@@ -21,11 +21,14 @@ Flask tutorial http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-
 
 ========== 8.1.13
 1. Data Model for Runcoach
+ - finish seed.py
+ - check db with model -i mode sqlalchemy
 2. Populate assignment table with 'real' data
 3. Data Model for Garmin API
 ========== 8.6.13
 4. Populate garmin table with 'real' data
 5. Get something to display properly in html/flask on local machine
+============= 8.8.13 ======= half day
 ============= 8.9.13 ======= conference day
 ============= 8.13.13 ========
 6. More UI development
