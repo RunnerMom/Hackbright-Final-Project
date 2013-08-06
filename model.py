@@ -35,6 +35,11 @@ class Assignment(Base):
     miles = Column(Float)
     low_time = Column(Integer)
     high_time = Column(Integer)
+    def seconds_to_minutes(self, seconds):
+        hours = seconds/3600
+        minutes = seconds/60
+        timestring = "%h : %m" % hours, minutes
+        return timestring
     
 """
 class Workout(Base):             #u.data = "rating" ??
