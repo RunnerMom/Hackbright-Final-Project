@@ -35,6 +35,7 @@ http://effbot.org/zone/python-with-statement.htm
 >>> done
 
 3. Get something to display properly in html/flask on local machine
+>>> done
 
 
 4. Data Model for Garmin API
