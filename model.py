@@ -40,10 +40,6 @@ class Assignment(Base):
         hours = floor(seconds/3600)
         minutes = (seconds/60)-hours*60
         return "%d:%02d" % (hours, minutes)
-
-        
-        
-
     
 """
 class Workout(Base):             #u.data = "rating" ??
