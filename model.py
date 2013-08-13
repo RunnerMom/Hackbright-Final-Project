@@ -53,16 +53,24 @@ class Workout(Base):             #u.data = "rating" ??
     workout_type = Column(Integer, nullable=True)
     pace = Column(String(16), nullable=True)
     workout_time = Column(Time, nullable=True)
-
+"""
 
 class Log(Base):
-    assigment_ID
-    MILES_COMPLETED
-    pace
-    workout_time
+    import datetime
+    __tablename__= "logs"     #when do we use u.item instead of "movie?"
+
+    id = Column(Integer, primary_key = True)
+    date= Column(String(64), nullable = True)   # calendar date
+    distance = Column(String)
+    time = Column(String)
+    # def convert_time(self, seconds):
+        # hours = floor(seconds/3600)
+        # minutes = (seconds/60)-hours*60
+        # return "%d:%02d" % (hours, minutes)
+
 ### End class declarations
 
-"""
+
 def main():
     """In case we need this for something"""
     pass

@@ -36,14 +36,15 @@ http://effbot.org/zone/python-with-statement.htm
 
 3. Get something to display properly in html/flask on local machine
 >>> done
-
-
-4. Data Model for Garmin API
 ========== 8.6.13
-5. Populate garmin table with 'real' data
-6. Get something to display properly in html/flask on local machine
 ============= 8.8.13 ======= half day
 ============= 8.9.13 ======= conference day
+
+4. Data Model for Garmin API
+
+5. Populate garmin table with 'real' data
+6. Get something to display properly in html/flask on local machine
+
 ============= 8.13.13 ========
 7. More UI development
 8. initial analysis of whether goal was met
