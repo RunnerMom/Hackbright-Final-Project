@@ -23,6 +23,10 @@ def index():
     assignment_list = model.session.query(model.Assignment).all()
     return render_template("index.html", assignments=assignment_list)
 
+@app.route("/smoketest")
+def smoketest():
+    return "App appears to be OK, and test fixture is working."
+
 # @app.route("/login")
 # def login():
 #     user_id = request.args.get("user_id")
