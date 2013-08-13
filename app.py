@@ -21,7 +21,8 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     assignment_list = model.session.query(model.Assignment).all()
-    return render_template("index.html", assignments=assignment_list)
+    running_log=model.session.query(model.Log).all()
+    return render_template("index.html", assignments=assignment_list, logs=running_log)
 
 @app.route("/smoketest")
 def smoketest():

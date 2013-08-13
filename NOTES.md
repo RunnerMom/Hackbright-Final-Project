@@ -42,7 +42,7 @@ http://effbot.org/zone/python-with-statement.htm
 5. Populate garmin table with 'real' data - done
 ============= 8.13.13 ========
 
-6. Use alembic to track revisions of new class
+6. Use alembic to track revisions of new class - done
 
 7. Get something to display properly in html/flask on local machine
 
