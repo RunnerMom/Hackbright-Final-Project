@@ -45,10 +45,29 @@ http://effbot.org/zone/python-with-statement.htm
 6. Use alembic to track revisions of new class - done
 
 7. Get something to display properly in html/flask on local machine
+To-Do-Next:
+- update model to:
+	- convert dates to Datetime objects
+	- Associate Log.date with Assigment.date as a foreign key.
+	- Test calling Log.date.miles -> does date need to be primary key?
+	- Sort the assignment-list and running-log
+	- update model to save Hours, Seconds and Minutes separately for both Assignment and Log
 
-8. More UI development
-9. initial analysis of whether goal was met
-10. Dynamic call to runcoach API
+- then, figure out how to get this to display properly
+	- through app
+	- or through flask/html
+
+
+
+
+
+
+
+
+================next steps
+*. More UI development
+*. initial analysis of whether goal was met
+*. Dynamic call to runcoach API
 
 
 

@@ -12,7 +12,7 @@ Base = declarative_base()
 Base.query = session.query_property()
 
 """ 
-The 3 classes below are tables in our runcoach.db
+The classes below are tables in our runcoach.db
 """
 class User(Base):
     __tablename__ = "users"
@@ -27,8 +27,7 @@ class User(Base):
 
 class Assignment(Base):
     import datetime
-    __tablename__= "assignments"     #when do we use u.item instead of "movie?"
-
+    __tablename__= "assignments"     
     id = Column(Integer, primary_key = True)
     date= Column(String(64), nullable = True)   # calendar date
 #    workout_id = Column(Integer, ForeignKey('workouts.id'), nullable=True)
