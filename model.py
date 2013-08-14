@@ -29,8 +29,7 @@ class Assignment(Base):
     import datetime
     __tablename__= "assignments"     
     id = Column(Integer, primary_key = True)
-    date= Column(String(64), nullable = True)   # calendar date
-#    workout_id = Column(Integer, ForeignKey('workouts.id'), nullable=True)
+    date= Column(Date, nullable = True)   # calendar date
     workout_type = Column(String(64), nullable = True)
     miles = Column(Float)
     low_time = Column(Integer)
@@ -55,7 +54,7 @@ class Log(Base):
     __tablename__= "logs"     #when do we use u.item instead of "movie?"
 
     id = Column(Integer, primary_key = True)
-    date= Column(String(64), nullable = True)   # calendar date
+    date= Column(Date, nullable = True)   # calendar date
     distance = Column(String)
     time = Column(String)
     # def convert_time(self, seconds):

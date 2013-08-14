@@ -50,19 +50,13 @@ To-Do-Next:
 	- convert dates to Datetime objects
 	- Associate Log.date with Assigment.date as a foreign key.
 	- Test calling Log.date.miles -> does date need to be primary key?
-	- Sort the assignment-list and running-log
+	- instead of pulling from the db and saving to a list, save to a dictionary with the date as the key.
+	- figure out how to sort the dictionary in date order
 	- update model to save Hours, Seconds and Minutes separately for both Assignment and Log
 
 - then, figure out how to get this to display properly
 	- through app
 	- or through flask/html
-
-
-
-
-
-
-
 
 ================next steps
 *. More UI development

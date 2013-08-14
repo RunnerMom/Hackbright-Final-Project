@@ -24,6 +24,29 @@ def index():
     running_log=model.session.query(model.Log).all()
     return render_template("index.html", assignments=assignment_list, logs=running_log)
 
+# Convert the assignment_list and running list into a dictionary:
+# 	key is the date in MM-DD-YYYY format
+# 	values are:
+# 		assignment.type
+# 		assignment.miles
+# 		assignment.low_time.convert_time (hours minutes, seconds)
+# 		assignment.high_time.convert_time (hours minutes, seconds)
+# 		log.distance
+# 		log.time.convert_time
+
+# THEN, pull them out of the dictionary to display them
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route("/smoketest")
 def smoketest():
     return "App appears to be OK, and test fixture is working."
