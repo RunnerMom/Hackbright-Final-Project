@@ -1,5 +1,6 @@
 import model
 model.Base.metadata.create_all(model.engine)        #code review with db instructor 
+
 import json
 import time
 from datetime import datetime
@@ -8,7 +9,6 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, Date, DateTime, Float
 from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
 from sqlalchemy import ForeignKey
-from urllib2 import urlopen
 
 engine = create_engine("sqlite:///runcoach.db", echo=False)
 session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
@@ -22,22 +22,41 @@ load_types -> workout types
 load_assignment -> user's daily workout assignment
 """
 def convert_date_string(date_string):
-    dt = datetime.strptime(date_string, "%Y-%m-%d")
+    dt = datetime.strptime(date_string, "%d-%b-%Y")
     return dt.date()
 
+# def load_users(session):
+
+#     with open('seed_data/u.user') as csvfile:
+#         userdata = csv.reader(csvfile, delimiter='|')
+#         for row in userdata:
+#             user_record = model.User(user_id=row[0], age=row[1], gender=row[2] , occupation=row[3], zipcode=row[4])
+#             session.add(user_record)
+#         session.commit()
+
 def load_assignment():
-    assignment = urlopen("http://runcoach.com/get_schedule_json.php?p_fnf_token=26444eb8030137c06ddd67e10caef3f3546f6bdc&p_request_id=32148&p_ath_id=474&p_from_date=2013-07-01&p_to_date=2013-07-30")
-    assignment_data = json.load(assignment)
-    for key, value in assignment_data.items():
-        date = key
-        workout_type = value['WoTypeName']
-        miles = value['miles']
-        low_time_in_seconds = value['lotime']
-        high_time_in_seconds = value['hitime']
-        converted_date = convert_date_string(date)
-        assignment_record = model.Assignment(date=converted_date, workout_type=workout_type, miles=miles, low_time=low_time_in_seconds, high_time=high_time_in_seconds)
-        session.add(assignment_record)
-    session.commit()
+    with open('seed_data/GG_July.json') as jsonfile:
+        assignment_data = json.load(jsonfile)
+        # print assignment_data 
+
+        #read file, print to screen - DONE :)
+        # json parser takes string returns dict, print raw object you get back. - DONE :)
+       # print ("Loading your assignment data into sqlite3...")
+        for key, value in assignment_data.items():
+            date = key
+            workout_type = value['WoTypeName']
+            if workout_type == 'Long Run' or workout_type == 'Maintenance':
+                miles = value['miles']
+                low_time_in_seconds = value['lotime']
+                high_time_in_seconds = value['hitime']
+                # print "date: " + date
+                # print "  workout type: " + workout_type
+                # print "  miles: " + miles
+                # print "  low time: " + low_time_in_seconds
+                # print "  high time: " + high_time_in_seconds
+                assignment_record = model.Assignment(date=date, workout_type=workout_type, miles=miles, low_time=low_time_in_seconds, high_time=high_time_in_seconds)
+                session.add(assignment_record)
+        session.commit()
 
 
 # def load_movies(session):

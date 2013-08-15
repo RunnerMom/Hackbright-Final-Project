@@ -17,7 +17,7 @@ The classes below are tables in our runcoach.db
 class User(Base):
     __tablename__ = "users"
 
-    user_id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String(64), nullable=True)
     email = Column(String(64), nullable=True)
     password = Column(String(64), nullable=True)
@@ -29,12 +29,13 @@ class Assignment(Base):
     import datetime
     __tablename__= "assignments"     
     id = Column(Integer, primary_key = True)
-    date= Column(Date, nullable = True)   # calendar date
+    user_id = Column(Integer, ForeignKey('users.id'))
+    date= Column(Date, nullable = False)   # calendar date
     workout_type = Column(String(64), nullable = True)
     miles = Column(Float)
     low_time = Column(Integer)
     high_time = Column(Integer)
-    def convert_time(self, seconds):
+    def convert_seconds(self, seconds):
         hours = floor(seconds/3600)
         minutes = (seconds/60)-hours*60
         return "%d:%02d" % (hours, minutes)
@@ -51,16 +52,19 @@ class Workout(Base):             #u.data = "rating" ??
 
 class Log(Base):
     import datetime
-    __tablename__= "logs"     #when do we use u.item instead of "movie?"
-
+    __tablename__= "logs"     
     id = Column(Integer, primary_key = True)
-    date= Column(Date, nullable = True)   # calendar date
+    user_id = Column(Integer, ForeignKey('users.id'))
+    date= Column(Date, ForeignKey('assignments.date'), nullable = True)   # calendar date
     distance = Column(String)
     time = Column(String)
-    # def convert_time(self, seconds):
-        # hours = floor(seconds/3600)
-        # minutes = (seconds/60)-hours*60
+    # def convert_time(self, string):
+        # hours = 
+        # minutes = 
         # return "%d:%02d" % (hours, minutes)
+    # def convert_distance(self, string):
+        # miles = 
+        # meters = 
 
 ### End class declarations
 
