@@ -12,7 +12,9 @@ Retrieve assigned workouts and training log from RunCoach and push the combined 
 UPDATE - current status:
 
 Retrieve daily workout activities stored in a CSV file, downloaded from Garmin site
+
 Retrieve daily assigned workouts in JSON format, via an http request to the Runcoach API
+
 Display combined data on localhost
 
 To run this program on your local machine:
