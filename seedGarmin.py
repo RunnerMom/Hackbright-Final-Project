@@ -29,11 +29,12 @@ def load_activity():
 
      #   print "length of list:", len(list(running_data)) 
         for row in run_data:
-            date = row[0]
-            converted_date = convert_date_string(date)
+            date = row[0] #string
+            converted_date = convert_date_string(date)  #convert to date object
+            assignment = model.session.query(model.Assignment).filter_by(date=converted_date).first()
             time = row[2]
             distance = row[4]
-            running_log = model.Log(date = converted_date, time = time, distance = distance)
+            running_log = model.Log(date = converted_date, time = time, distance = distance, assignment_id=assignment.id)
             session.add(running_log)
         session.commit()
        #     print date + " : " + time + " minutes, " + distance + " miles"

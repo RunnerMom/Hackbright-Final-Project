@@ -16,7 +16,7 @@
     <th style="padding:8px;">Date</th><th style="padding:8px;">Runcoach Assignment</th><th style="padding:8px;"> Running Log(Garmin)</th>
     </tr>
             {% for assignment in assignments %}
-            <tr>
+        <tr>
             <td><h5>{{ assignment.date }}</h5></td>
             <td><ul>
                     <li>{{ assignment.workout_type}}</li>
@@ -27,16 +27,17 @@
                         - 
                         {{ assignment.convert_seconds(assignment.high_time) }}             
                     </li>
+
                 </ul>   
             </td>
-             {% endfor %}
-             {% for log in logs %}
-            <td>{{log.distance}} miles
-                in {{log.time}}
+            <td><ul>
+                    {% for log in assignment.logs %}
+                    <li>Miles completed: {{log.distance}} in {{log.time}}</li>
+                    {% endfor %}
+                </ul>
             </td>
+        </tr>
              {% endfor %}
-            </tr>
-
             </table> 
             </div>
                                

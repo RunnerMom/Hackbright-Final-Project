@@ -30,11 +30,13 @@ class Assignment(Base):
     __tablename__= "assignments"     
     id = Column(Integer, primary_key = True)
     user_id = Column(Integer, ForeignKey('users.id'))
+    logs = relationship("Log", backref="assignment")
     date= Column(Date, nullable = False)   # calendar date
     workout_type = Column(String(64), nullable = True)
     miles = Column(Float)
     low_time = Column(Integer)
     high_time = Column(Integer)
+
     def convert_seconds(self, seconds):
         hours = floor(seconds/3600)
         minutes = (seconds/60)-hours*60
@@ -55,7 +57,8 @@ class Log(Base):
     __tablename__= "logs"     
     id = Column(Integer, primary_key = True)
     user_id = Column(Integer, ForeignKey('users.id'))
-    date= Column(Date, ForeignKey('assignments.date'), nullable = True)   # calendar date
+    assignment_id = Column(Integer, ForeignKey('assignments.id'))
+    date= Column(Date)   # calendar date
     distance = Column(String)
     time = Column(String)
     # def convert_time(self, string):

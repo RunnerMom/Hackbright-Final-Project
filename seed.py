@@ -29,12 +29,11 @@ def load_assignment():
     assignment = urlopen("http://runcoach.com/get_schedule_json.php?p_fnf_token=26444eb8030137c06ddd67e10caef3f3546f6bdc&p_request_id=32148&p_ath_id=474&p_from_date=2013-07-01&p_to_date=2013-07-30")
     assignment_data = json.load(assignment)
     for key, value in assignment_data.items():
-        date = key
+        converted_date = convert_date_string(key)
         workout_type = value['WoTypeName']
         miles = value['miles']
         low_time_in_seconds = value['lotime']
         high_time_in_seconds = value['hitime']
-        converted_date = convert_date_string(date)
         assignment_record = model.Assignment(date=converted_date, workout_type=workout_type, miles=miles, low_time=low_time_in_seconds, high_time=high_time_in_seconds)
         session.add(assignment_record)
     session.commit()
