@@ -17,13 +17,13 @@ Base = declarative_base()
 Base.query = session.query_property()
 """
 This program is built to load garmin data into a runcoach.db sqlite3 database:
-load_activity -> loads the user's daily activies into Log table
+load_log -> loads the user's daily training logs from Garmin into Log table
 """
 def convert_date_string(date_string):
     dt = datetime.strptime(date_string, "%Y-%m-%d")
     return dt.date()
 
-def load_activity():
+def load_log():
     with open('seed_data/Garmin/ActivityData.csv') as csvfile:
         run_data = csv.reader(csvfile, delimiter=',')
 
@@ -38,11 +38,10 @@ def load_activity():
             session.add(running_log)
         session.commit()
        #     print date + " : " + time + " minutes, " + distance + " miles"
-
          
 def main():
     # You'll call each of the load_* functions with the session as an argument
-    load_activity()
+    load_log()
 
 if __name__ == "__main__":
 #     s=model.connect()

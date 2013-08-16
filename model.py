@@ -43,7 +43,7 @@ class Assignment(Base):
         return "%d:%02d" % (hours, minutes)
     
 """
-class Workout(Base):             #u.data = "rating" ??
+class Workout(Base):             
     __tablename__ = "workouts"
 
     id = Column(Integer, primary_key=True)

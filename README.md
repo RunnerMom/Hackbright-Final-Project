@@ -1,7 +1,7 @@
 Hackbright-Final-Project
 ========================
 
-Repo for my Garmin-Runcoach Final project
+Repo for my Garmin-Runcoach project
 
 OBJECTIVE:
 
@@ -12,8 +12,13 @@ Retrieve assigned workouts and training log from RunCoach and push the combined 
 UPDATE - current status:
 
 Retrieve daily workout activities stored in a CSV file, downloaded from Garmin site
-Retrieve daily assigned workouts from a JSON file, retrieved from the Runcoach API
+Retrieve daily assigned workouts in JSON format, via an http request to the Runcoach API
 Display combined data on localhost
+
+To run this program on your local machine:
+    1. clone the directory
+    2. run "python app.py"
+    3. view app in localhost:5000
 
 FILES:
 model.py - contains the database model and classes for the application

@@ -30,6 +30,7 @@ WEB SCRAPING: http://www.gregreda.com/2013/03/03/web-scraping-101-with-python/
 
 3. Get something to display properly in html/flask on local machine
 >>> done
+========== 8.2.13 field trip =========
 ========== 8.6.13
 ============= 8.8.13 ======= half day
 ============= 8.9.13 ======= conference day
@@ -66,16 +67,38 @@ Done:
 		- ** need to Base.metadata.create_all(bind=engine)
 		- This drops the schema and re-creates. Maybe this is a step that gets saved by alembic?????
 	- checked that db re-populated (runcoach)correctly
-To Do Next:
+========8.15.13 =========
+Done:
 - re-populate Garmin data with month of July
-- add a couple users (?)
-- figure out how to sort the dictionary in date order
-	- update model to save Hours, Seconds and Minutes separately for both Assignment and Log
+- checked that Garmin populated correctly
+=======8.16.13 ===========
+- sorted the dictionary in date order
+- Associated the Log class with the Assignment class:
+	- added assignment_id to Log class as foreignkey. Added logs as backref to Assignment class.
+	- removed foreignkey based on date.
+	- when seeding the garmin data, for each log:
+	   - converted date_string to date object
+	   - queried assignment table for that date
+	   - added the assignment_id for the corresponding assignment as an attribute of that log
+- because of this association, flask now only needs to query the assignment object and can get all the info from the log(s) for that assignment. So, updated index page to reflect this.
+- now displays logs for each assignment on same row!
 
-- then, figure out how to get this to display properly
-	- through app
-	- or through flask/html
-================next steps
+To Do:
+- create a git branch: 
+git branch <name>
+git checkout <name>
+	- write some code to compare the mileage run vs assignment
+			- update model to save Hours, Seconds and Minutes separately for both Assignment and Log
+	- add a Twitter Bootstrap template
+	- change index page to:
+		- select user
+		- select dates to download from Rcoach -> download button
+		- select dates to download from Garmin -> download button
+		- create a "clear database" option for the demo
+	- figure out how to 
+- add a couple users (?)
+
+================next steps ===========
 *. More UI development
 *. initial analysis of whether goal was met
 *. Dynamic call to runcoach API
