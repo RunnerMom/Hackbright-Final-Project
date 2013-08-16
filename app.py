@@ -20,9 +20,8 @@ app = Flask(__name__)
 #this may be an opportunity to do screen scraping later...
 @app.route("/")
 def index():
-    assignment_list = model.session.query(model.Assignment).all()
-    running_log=model.session.query(model.Log).all()
-    return render_template("index.html", assignments=assignment_list, logs=running_log)
+    assignment_list = model.session.query(model.Assignment).order_by(model.Assignment.date).all()
+    return render_template("index.html", assignments=assignment_list)
 
 # Convert the assignment_list and running list into a dictionary:
 # 	key is the date in MM-DD-YYYY format
