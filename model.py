@@ -37,11 +37,17 @@ class Assignment(Base):
     low_time = Column(Integer)
     high_time = Column(Integer)
 
-    def convert_seconds(self, seconds):
-        hours = floor(seconds/3600)
-        minutes = (seconds/60)-hours*60
-        return "%d:%02d" % (hours, minutes)
-    
+    def convert_seconds(self, time_in_seconds):
+        hours = floor(time_in_seconds/3600) #int
+        minutes = floor((time_in_seconds/60)-hours*60)  #int
+        seconds = time_in_seconds - 3600*hours - 60*minutes #int
+        text = "%d:%02d" % (hours, minutes) #string
+        return {"hours": hours, 
+                "minutes": minutes,
+                "seconds": seconds,
+                "text": text}
+
+
 """
 class Workout(Base):             
     __tablename__ = "workouts"
@@ -61,8 +67,8 @@ class Log(Base):
     date= Column(Date)   # calendar date
     distance = Column(String)
     time = Column(String)
-    # def convert_time(self, string):
-        # hours = 
+    # def convert_timestring(self, string):
+    #     hours = 
         # minutes = 
         # return "%d:%02d" % (hours, minutes)
     # def convert_distance(self, string):

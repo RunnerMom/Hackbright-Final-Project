@@ -11,36 +11,49 @@
         
     <table border="1">
     <tr>
-    <th colspan="3">Assignments for July 2013</th>
+    <th colspan="4">Assignments for July 2013</th>
     </tr>
-    <th style="padding:8px;">Date</th><th style="padding:8px;">Runcoach Assignment</th><th style="padding:8px;"> Running Log(Garmin)</th>
+    <th style="padding:8px;">Date</th><th style="padding:8px;">Runcoach Assignment</th><th style="padding:8px;"> Running Log(Garmin)</th><th style="padding:8px;">Goal</th>
     </tr>
             {% for assignment in assignments %}
         <tr>
             <td><h5>{{ assignment.date }}</h5></td>
             <td><ul>
-                    <li>{{ assignment.workout_type}}</li>
-                    <li>Miles: {{ assignment.miles}}</li>
-                    <li>Time: 
+                    <b>{{ assignment.workout_type}}</b>
 
-                        {{ assignment.convert_seconds(assignment.low_time) }} 
-                        - 
-                        {{ assignment.convert_seconds(assignment.high_time) }}             
-                    </li>
+                    {% if assignment.workout_type == "Maintenance" or 
+                          assignment.workout_type == "Long Run" %}
+                        <li>Miles: {{ assignment.miles}}</li>
+                        <li>Time: {{ assignment.convert_seconds(assignment.low_time).text }} 
+                                {% if assignment.high_time != assignment.low_time %}
+                                    - 
+                                    {{ assignment.convert_seconds(assignment.high_time) }}  
+                                {% endif %}           
+                        </li>
+                    {% endif %}
 
+                    {% if assignment.workout_type == "Track" or
+                          assignment.workout_type == "Tempo" or
+                          assignment.workout_type == "Threshold" %}
+                            <li>Miles: {{ assignment.miles}}</li>                            
+                    {% endif %}       
+                        </li>                        
                 </ul>   
             </td>
             <td><ul>
                     {% for log in assignment.logs %}
-                    <li>Miles completed: {{log.distance}} in {{log.time}}</li>
+                    <li>Completed: {{log.distance}} miles in {{log.time}}</li>
                     {% endfor %}
+                </ul>
+            </td>
+            <td><ul>
+                  <h7>Met Goal</h7>
                 </ul>
             </td>
         </tr>
              {% endfor %}
             </table> 
             </div>
-                               
     <p>  
     </div>
 </div>
