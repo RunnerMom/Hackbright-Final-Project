@@ -30,7 +30,7 @@ class Assignment(Base):
     __tablename__= "assignments"     
     id = Column(Integer, primary_key = True)
     user_id = Column(Integer, ForeignKey('users.id'))
-    logs = relationship("Log", backref="assignment")
+    logs = relationship("Log", backref="assignment", uselist=True)
     date= Column(Date, nullable = False)   # calendar date
     workout_type = Column(String(64), nullable = True)
     miles = Column(Float)
@@ -46,19 +46,19 @@ class Assignment(Base):
                 "minutes": minutes,
                 "seconds": seconds,
                 "text": text}
+    def logs_distance(self):   #sum the total distance in assignment.logs
+        return reduce(lambda a,i: sum(a, (float(i.distance))), self.logs) 
 
+    def logs_time(self):      #sum the total distance in assignment.logs
+        return reduce(lambda a,: 
+            a+float(i.convert_timestring()["totalseconds"]), 
+            self.logs)
 
-"""
-class Workout(Base):             
-    __tablename__ = "workouts"
+        #   log[i].time is a timestring
+        #   dict = convert_timestring(list[i].time) is a dictionary
+        #   dict["totalseconds"] = integer of seconds
 
-    id = Column(Integer, primary_key=True)
-    workout_type = Column(Integer, nullable=True)
-    pace = Column(String(16), nullable=True)
-    workout_time = Column(Time, nullable=True)
-"""
-
-class Log(Base):
+class Log(Base):        #this is the data from Garmin
     import datetime
     __tablename__= "logs"     
     id = Column(Integer, primary_key = True)
@@ -67,13 +67,26 @@ class Log(Base):
     date= Column(Date)   # calendar date
     distance = Column(String)
     time = Column(String)
-    # def convert_timestring(self, string):
-    #     hours = 
-        # minutes = 
-        # return "%d:%02d" % (hours, minutes)
-    # def convert_distance(self, string):
-        # miles = 
-        # meters = 
+    def convert_timestring(self):   #takes in a log object
+        timelist=self.time.split(":")
+        if len(timelist)==3:
+            hours = int(timelist[0])
+            minutes = int(timelist[1])
+            seconds = float(timelist[2])
+        elif len(timelist)==2:
+            minutes = int(timelist[0])
+            seconds = float(timelist[1])
+        text = "%d:%02d:%02d" % (hours, minutes, seconds)
+        totalseconds = hours*3600+minutes*60+seconds
+        return {"hours": hours, 
+                "minutes": minutes,
+                "seconds": seconds,
+                "text": text,
+                "totalseconds": totalseconds}
+
+    def convert_distance(self, string):
+        miles = float(string)
+        meters = miles*1609.344
 
 ### End class declarations
 

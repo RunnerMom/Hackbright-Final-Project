@@ -83,10 +83,14 @@ Done:
 - because of this association, flask now only needs to query the assignment object and can get all the info from the log(s) for that assignment. So, updated index page to reflect this.
 - now displays logs for each assignment on same row!
 
-To Do:
+Done:
 - create a git branch: 
 git branch <name>
 git checkout <name>
+
+
+
+===========8.17.13=============
 	- write some code to compare the mileage run vs assignment
 			- update model to save Hours, Seconds and Minutes separately for both Assignment and Log
 	- add a Twitter Bootstrap template

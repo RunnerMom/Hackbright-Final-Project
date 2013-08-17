@@ -15,10 +15,14 @@
     </tr>
     <th style="padding:8px;">Date</th><th style="padding:8px;">Runcoach Assignment</th><th style="padding:8px;"> Running Log(Garmin)</th><th style="padding:8px;">Goal</th>
     </tr>
+ <!--Each day has one assigment. Each row in the table is one day-->
             {% for assignment in assignments %}
         <tr>
+ <!--First column prints the date-->
             <td><h5>{{ assignment.date }}</h5></td>
-            <td><ul>
+<!--2nd column prints the workout type and details-->
+            <td>
+                <ul>
                     <b>{{ assignment.workout_type}}</b>
 
                     {% if assignment.workout_type == "Maintenance" or 
@@ -27,7 +31,7 @@
                         <li>Time: {{ assignment.convert_seconds(assignment.low_time).text }} 
                                 {% if assignment.high_time != assignment.low_time %}
                                     - 
-                                    {{ assignment.convert_seconds(assignment.high_time) }}  
+                                    {{ assignment.convert_seconds(assignment.high_time).text }}  
                                 {% endif %}           
                         </li>
                     {% endif %}
@@ -40,14 +44,28 @@
                         </li>                        
                 </ul>   
             </td>
-            <td><ul>
+<!--3rd column prints the log data from Garmin for that date-->
+            <td>
+                <ul>
                     {% for log in assignment.logs %}
                     <li>Completed: {{log.distance}} miles in {{log.time}}</li>
                     {% endfor %}
                 </ul>
             </td>
+<!--4th column prints the analysis of whether the goal was met` -->
             <td><ul>
-                  <h7>Met Goal</h7>
+                    {% if assignment.workout_type =="Cross Training" and
+                        assignment.log %}
+                        Great!
+        <!--Was distance goal met?-->
+                    {% elif assignment.logs and assignment.logs.length %}
+                        {% if assignment.logs_distance()>= assignment.miles %}
+                        Distance Goal Met!
+                        {% endif %}
+                    {% elif assignment.logs %}
+                        {% if assignment.logs[0].distance >= assignment.miles %}
+                        {% endif %}
+                    {% endif %}
                 </ul>
             </td>
         </tr>
@@ -58,3 +76,4 @@
     </div>
 </div>
 {% endblock %} 
+
