@@ -53,20 +53,23 @@
                 </ul>
             </td>
 <!--4th column prints the analysis of whether the goal was met` -->
-            <td><ul>
+            <td>
                     {% if assignment.workout_type =="Cross Training" and
-                        assignment.log %}
+                        assignment.logs %}
                         Great!
         <!--Was distance goal met?-->
                     {% elif assignment.logs and assignment.logs.length %}
                         {% if assignment.logs_distance()>= assignment.miles %}
                         Distance Goal Met!
                         {% endif %}
+                        A
                     {% elif assignment.logs %}
+                        
                         {% if assignment.logs[0].distance >= assignment.miles %}
+                        Distance Goal Met!
                         {% endif %}
                     {% endif %}
-                </ul>
+                
             </td>
         </tr>
              {% endfor %}

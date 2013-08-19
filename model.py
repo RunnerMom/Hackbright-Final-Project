@@ -47,7 +47,7 @@ class Assignment(Base):
                 "seconds": seconds,
                 "text": text}
     def logs_distance(self):   #sum the total distance in assignment.logs
-        return reduce(lambda a,i: sum(a, (float(i.distance))), self.logs) 
+        return reduce(lambda a,i: sum(a, (float(i.distance))), self.logs,[])
 
     def logs_time(self):      #sum the total distance in assignment.logs
         return reduce(lambda a,: 
@@ -67,7 +67,7 @@ class Log(Base):        #this is the data from Garmin
     date= Column(Date)   # calendar date
     distance = Column(String)
     time = Column(String)
-    def convert_timestring(self):   #takes in a log object
+    def convert_timestring(self):   #can use strp.time to do this in future
         timelist=self.time.split(":")
         if len(timelist)==3:
             hours = int(timelist[0])

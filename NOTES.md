@@ -89,18 +89,25 @@ git branch <name>
 git checkout <name>
 
 
-
 ===========8.17.13=============
-	- write some code to compare the mileage run vs assignment
-			- update model to save Hours, Seconds and Minutes separately for both Assignment and Log
-	- add a Twitter Bootstrap template
+	- wrote some code in view to compare the mileage run vs assignment
+			- wrote some class methods to convert data types to compare
+	- added 4th column to view to indicate whether Goal was met or not.
+
+	- Fix logic for Distance Goal completed
+
+==========after 8.21.13 list=============
+	- change convert_timestring method to strp.time().time
+	- figure out Garmin API.
+
+==========
 	- change index page to:
 		- select user
 		- select dates to download from Rcoach -> download button
 		- select dates to download from Garmin -> download button
-		- create a "clear database" option for the demo
-	- figure out how to 
-- add a couple users (?)
+	- integrate seeding into routes
+
+	- add a Twitter Bootstrap template
 
 ================next steps ===========
 *. More UI development
