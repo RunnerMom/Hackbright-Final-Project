@@ -60,16 +60,16 @@
         <!--Was distance goal met?-->
                     {% elif assignment.logs and assignment.logs.length %}
                         {% if assignment.logs_distance()>= assignment.miles %}
-                        Distance Goal Met!
+                        Distances added and Goal Met!
                         {% endif %}
-                        A
+                    
                     {% elif assignment.logs %}
                         
-                        {% if assignment.logs[0].distance >= assignment.miles %}
-                        Distance Goal Met!
+                        {% if assignment.logs[0].convert_distance() >= assignment.miles %}
+                        Distance Goal Met! 
                         {% endif %}
                     {% endif %}
-                
+                    &nbsp;
             </td>
         </tr>
              {% endfor %}

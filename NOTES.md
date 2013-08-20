@@ -102,7 +102,7 @@ git checkout <name>
 
 ==========
 	- change index page to:
-		- select user
+		- login page
 		- select dates to download from Rcoach -> download button
 		- select dates to download from Garmin -> download button
 	- integrate seeding into routes

@@ -83,10 +83,9 @@ class Log(Base):        #this is the data from Garmin
                 "seconds": seconds,
                 "text": text,
                 "totalseconds": totalseconds}
-
-    def convert_distance(self, string):
-        miles = float(string)
-        meters = miles*1609.344
+    def convert_distance(self):
+        return float(self.distance)
+        # meters = miles*1609.344
 
 ### End class declarations
 
