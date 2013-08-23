@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Unlock the Plugin</title>
+</head>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/prototype/prototype.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-Broadcaster.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-BrowserDetect.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-DateTimeFormat.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-PluginDetect.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-XmlConverter.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminObjectGenerator.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminPluginUtils.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminDevice.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminDevicePlugin.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminDeviceControl.js"></script>
+<script type="text/javascript">
+    var control;
+    function load() {
+        try {
+            control = new Garmin.DeviceControl();
+            if(control.isPluginInitialized()) {
+                $('message').innerHTML = "<h2>Garmin Communicator plugin version "+control.getPluginVersionString()+" found!</h2>";
+            }
+
+            if(control.unlock( ["http://10.1.10.24:5000", "122c0d49084cdac2edd20cc2da166b3d"] )) {
+                $('status').innerHTML = "The plug-in has been unlocked successfully";
+            } else {
+                $('status').innerHTML = "The plug-in was not unlocked successfully";
+            }
+        } catch(e) {
+            $('message').innerHTML = "<h2>" + e.message + "</h2>";
+        }
+    }
+</script>
+<body onload="load()">
+    <h1>Unlock the Plugin</h1>
+    <div id="message"></div>
+    <div id="status"></div>
+</body>
+</html>

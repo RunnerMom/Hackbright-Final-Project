@@ -35,16 +35,15 @@ def index():
 
 # THEN, pull them out of the dictionary to display them
 
+@app.route("/device")
+def device():
+    return render_template("garmin_find_devices.html")
 
-
-
-
-
-
-
-
-
-
+@app.route("/device_data", methods = ['POST'])
+def device_data():
+    # save the device data in the database
+    # return 200
+    return "Device data post received"
 
 @app.route("/smoketest")
 def smoketest():

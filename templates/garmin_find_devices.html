@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/prototype/prototype.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-Broadcaster.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-BrowserDetect.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-DateTimeFormat.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-PluginDetect.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/util/Util-XmlConverter.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminObjectGenerator.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminPluginUtils.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminDevice.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminDevicePlugin.js"></script>
+<script type="text/javascript" src="http://developer.garmin.com/web/communicator-api/garmin/device/GarminDeviceControl.js"></script> 
+<script type="text/javascript">
+    var control;
+    //create a call-back listener class
+    var listener = Class.create();
+    listener.prototype = { 
+        initialize: function() { },
+        onFinishFindDevices: function(json) {
+            console.log("onFinishFindDevices!"); 
+            var devices = json.controller.getDevices();
+            control.setDeviceNumber(json.controller.deviceNumber);
+            var str = "<b>Devices Found: "+devices.length+"</b><ul>";
+            if (json.controller.numDevices > 0) {
+                for( var i=0; i < devices.length; i++ ) {
+                    str += "<li>"+devices[i].getDisplayName()+" with device number " + devices[i].getNumber() + "</li>";
+                }
+                str += "</ul>";
+            }
+            $('devices').innerHTML = str;
+        },
+        onFinishReadFromDevice: function(json) {
+            console.log("hello!!");
+            console.log(json);
+            console.log(control.gpsDataString);
+        }
+    }
+    function load() {
+        try {
+            control = new Garmin.DeviceControl();
+            control.register(new listener());
+            var unlocked = control.unlock( ["http://10.1.10.24:5000", "122c0d49084cdac2edd20cc2da166b3d"] );
+            $('msg').innerHTML = "<h2>Found Plugin, unlocked="+unlocked+"</h2>";
+        } catch(e) { alert(e); }
+    }
+    function findDevices() {
+        try {
+            control.findDevices();
+        } catch(e) { alert(e); }
+    }
+    function readDevice() {
+        try {
+            control.readDataFromDevice(Garmin.DeviceControl.FILE_TYPES.tcxDir);
+        } catch(e) { alert(e); }
+    }
+    function sendData() {
+        new Ajax.Request("http://10.1.10.24:5000/device_data", { 
+            method: 'post',
+            parameters: { data_string: control.gpsDataString },
+            onSuccess: function(stuff) { console.log("that worked"); },
+            onFailure: function(stuff) { console.log("did not work"); }
+        });
+    }
+</script>
+</head>
+<body onload="javascript:load()">
+    <h1>Auto Load Plugin</h1>
+    <div id="msg"></div>
+    <div id="devices"></div>
+    <input value="Find Devices" onclick="javascript:findDevices()" type="button">
+    <input value="Read From Device" onclick="javascript:readDevice()" type="button">
+    <input value="Save Data on Server" onclick="javascript:sendData()" type="button">
+</body>
+</html>
+
+
