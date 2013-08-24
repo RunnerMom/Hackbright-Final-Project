@@ -95,10 +95,18 @@ git checkout <name>
 	- added 4th column to view to indicate whether Goal was met or not.
 
 	- Fix logic for Distance Goal completed
+=========8.20.13==========
+	- Successfully demo'd static app.
+	- Merged metgoal branch back to origin
 
 ==========after 8.21.13 list=============
 	- change convert_timestring method to strp.time().time
 	- figure out Garmin API.
+
+==========Garmin API 8.23.13 ================
+- created templates for find_device and read_device
+- next: code review these templates, re-create on home IP address
+
 
 ==========
 	- change index page to:
