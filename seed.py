@@ -26,7 +26,7 @@ def convert_date_string(date_string):
     return dt.date()
 
 def load_assignment():
-    assignment = urlopen("http://runcoach.com/get_schedule_json.php?p_fnf_token=26444eb8030137c06ddd67e10caef3f3546f6bdc&p_request_id=32148&p_ath_id=474&p_from_date=2013-07-01&p_to_date=2013-07-30")
+    assignment = urlopen("http://runcoach.com/get_schedule_json.php?p_fnf_token=26444eb8030137c06ddd67e10caef3f3546f6bdc&p_request_id=32148&p_ath_id=474&p_from_date=2014-01-01&p_to_date=2014-01-30")
     assignment_data = json.load(assignment)
     for key, value in assignment_data.items():
         converted_date = convert_date_string(key)
